@@ -1,39 +1,69 @@
 ```
-# ESP-IDF build artifacts
+# Build artifacts
 build/
 dist/
-*.bin
-*.elf
-*.map
-*.csv
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
 
-# CMake build artifacts
+# C/C++ specific
+*.i
+*.ii
+*.s
+*.ko
+*.mod.c
+*.mod.o
+*.order
+*.markers
+*.dwo
+*.dwz
+
+# CMake
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
 Makefile
+compile_commands.json
 
-# IDE and editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
+# Generated files
+*.cmake
+generated/
+gen/
 
 # Logs
 *.log
+*.out
 
 # Environment files
 .env
 .env.local
 *.env.*
 
-# Python artifacts (if any Python scripts are used in build)
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Python (if present in project)
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+.Python
+*.so
 
 # Temporary files
+*.tmp
+*.temp
 *.bak
-*.~
+*.backup
 ```

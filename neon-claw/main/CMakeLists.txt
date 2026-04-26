@@ -1,19 +1,29 @@
 idf_component_register(
-    SRC_DIRS
-        "."
-    INCLUDE_DIRS
-        "."
-    EMBED_TXTFILES
-        "web/index.html"
-        "web/styles.css"
-        "web/app.js"
-        "web/lean-qr.min.mjs"
+    SRCS 
+        "main.c"
+        "app_claw.c"
+        "basic_demo_cli.c"
+        "basic_demo_wifi.c"
+        "basic_demo_settings.c"
+        "basic_demo_lua_modules.c"
+        "app_expression_emote.c"
+        "config_http_server.c"
+        "captive_dns.c"
+        "neon_claw_core.c"
+        "neon_claw_init.c"
+    INCLUDE_DIRS "."
+    REQUIRES 
+        freertos 
+        esp_timer 
+        nvs_flash 
+        esp_netif 
+        esp_wifi 
+        http_parser 
+        json 
+        lwip 
+        mDNS 
+        console 
+        fatfs 
+        spi_flash
+        neon_capabilities
 )
-
-if(CONFIG_BASIC_DEMO_ENABLE_EMOTE)
-    set(EMOTE_ASSETS_EXTERNAL_PATH "${CMAKE_SOURCE_DIR}/assets_local")
-    set(EMOTE_ASSETS_FILE "${CMAKE_BINARY_DIR}/emote_assets.bin")
-    build_speaker_assets_bin("emote" "284_240" ${EMOTE_ASSETS_FILE} ${CONFIG_MMAP_FILE_NAME_LENGTH} ${EMOTE_ASSETS_EXTERNAL_PATH})
-    message(STATUS "Generated emote assets: ${EMOTE_ASSETS_FILE} -> emote partition")
-    esptool_py_flash_to_partition(flash "emote" "${EMOTE_ASSETS_FILE}")
-endif()

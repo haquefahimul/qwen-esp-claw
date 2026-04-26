@@ -4,36 +4,39 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./docs/src/assets/logos/logo-f.svg" />
       <source media="(prefers-color-scheme: light)" srcset="./docs/src/assets/logos/logo.svg" />
-      <img alt="ESP-Claw logo" src="./docs/src/assets/logos/logo.svg" width="50%" />
+      <img alt="Nano-Claw logo" src="./docs/src/assets/logos/logo.svg" width="50%" />
     </picture>
   </a>
-
-  <h1>ESP-Claw 🦞 AI Agent Framework for IoT Devices</h1>
-
-  <h3>💬 Chat as Creation · 🚀 Millisecond Response · 🧩 Smart and Extensible · 😋 Grows with You</h3>
-
+  
+  <h1>Nano-Claw 🦞 Enhanced AI Agent Framework for ESP32-S3</h1>
+  
+  <h3>💬 Chat as Creation · 🔐 Secure by Default · 🚀 Millisecond Response · 🧩 Smart and Extensible</h3>
+  
   <p>
     <a href="https://www.espressif.com">
-      <img src="https://img.shields.io/badge/runs_on-ESP32_Series-red?style=flat-square" alt="Runs on ESP32 Series" />
+      <img src="https://img.shields.io/badge/runs_on-ESP32_S3_N8R16-red?style=flat-square" alt="Runs on ESP32-S3 N8R16" />
     </a>
     <a href="./LICENSE">
-      <img src="https://img.shields.io/github/license/espressif/esp-claw?style=flat-square" alt="License" />
+      <img src="https://img.shields.io/badge/license-Apache--2.0-blue?style=flat-square" alt="License" />
+    </a>
+    <a href="./NANO_CLAW_FEATURES.md">
+      <img src="https://img.shields.io/badge/features-Enhanced-green?style=flat-square" alt="Enhanced Features" />
     </a>
   </p>
 
-  <a href="https://esp-claw.com/en/">Home</a>
+  <a href="#-key-features">Features</a>
   |
-  <a href="https://esp-claw.com/en/tutorial/">Docs</a>
+  <a href="#-whats-new-in-nano-claw">What's New</a>
   |
-  <a href="https://esp-claw.com/en/flash/">Online Flashing</a>
+  <a href="#-quick-start">Quick Start</a>
   |
-  <a href="https://esp-claw.com/en/reference-project/build-from-source/">Build from Source</a>
+  <a href="#-documentation">Documentation</a>
   |
   <a href="./README_CN.md">简体中文</a>
 
 </div>
 
-**ESP-Claw** is Espressif's **Chat Coding** AI agent framework for IoT devices. It defines device behavior through conversation and completes the full loop of sensing, decision-making, and execution locally on Espressif chips. Inspired by the OpenClaw concept and reimplemented in C, ESP-Claw is lightweight, intelligent, and continuously evolving. With just an ESP32-series chip that costs only a few dollars, you can experience what makes ESP-Claw so nimble.
+**Nano-Claw** is an enhanced fork of Espressif's **ESP-Claw** AI agent framework, specifically optimized for ESP32-S3 N8R16 devices. Building on ESP-Claw's foundation, Nano-Claw adds enterprise-grade features like **secure device pairing**, **encrypted secrets vault**, and enhanced multi-channel IM support. Inspired by OpenClaw and reimplemented in C for resource-constrained IoT devices, Nano-Claw turns your $5 ESP32 chip into a secure, intelligent edge agent.
 
 <div align="center">
   <img alt="From traditional IoT to Edge Agent" src="./docs/static/from-traditional-iot-to-edge-agent.webp" width="90%" />
@@ -193,3 +196,103 @@ If this project helps you, please consider giving it a star. ⭐⭐⭐⭐⭐
 Inspired by [OpenClaw](https://github.com/openclaw/openclaw).
 
 The implementation of Agent Loop, IM communication, and related capabilities on ESP32 also draws on [MimiClaw](https://github.com/memovai/mimiclaw).
+
+---
+
+## 🆕 What's New in Nano-Claw
+
+Nano-Claw extends ESP-Claw with **enterprise-grade security and management features**:
+
+### 🔐 Device Pairing System (`cap_pairing`)
+Enable secure device-to-user pairing through IM platforms using 8-character codes. No manual WiFi configuration needed!
+
+**Features:**
+- ✅ 8-character alphanumeric code generation (e.g., `A7K9-M2XQ`)
+- ✅ Multi-channel support: Discord, Telegram, WeChat, QQ, Feishu
+- ✅ 1-hour TTL with automatic expiry
+- ✅ JSON-based persistent storage
+- ✅ Auto-pruning of expired requests
+
+**Use Case:** User sends `/start` to your Telegram bot → gets pairing code → device automatically links to their account.
+
+📖 **Full Documentation:** [NANO_CLAW_FEATURES.md](./NANO_CLAW_FEATURES.md#1-device-pairing-system-cap_pairing--new)
+
+### 🗄️ Encrypted Secrets Vault (`cap_secrets`)
+Securely store API keys, tokens, passwords, and certificates with hardware-accelerated encryption.
+
+**Features:**
+- ✅ 5 secret types: String, API Key, Token, Password, Certificate
+- ✅ AES-256-GCM encryption (software or ESP32 HMAC hardware)
+- ✅ Metadata tracking (created/updated timestamps, access count)
+- ✅ Export/import encrypted backups
+- ✅ Secret rotation without name changes
+- ✅ Secure wipe capability
+
+**Use Case:** Store your OpenAI API key, Telegram bot token, and WiFi credentials encrypted in flash.
+
+📖 **Full Documentation:** [NANO_CLAW_FEATURES.md](./NANO_CLAW_FEATURES.md#2-encrypted-secrets-vault-cap_secrets--new)
+
+### 📊 Feature Comparison
+
+| Feature | ESP-Claw | Nano-Claw |
+|---------|----------|-----------|
+| Device Pairing | ❌ | ✅ NEW |
+| Encrypted Secrets Vault | ⚠️ Basic | ✅ Full Featured |
+| Hardware Crypto Support | ❌ | ✅ ESP32 HMAC |
+| Secret Rotation | ❌ | ✅ |
+| Multi-channel Pairing | ❌ | ✅ 5 Platforms |
+| Access Logging | ❌ | ✅ |
+
+See complete comparison in [NANO_CLAW_FEATURES.md](./NANO_CLAW_FEATURES.md#-comparison-original-esp-claw-vs-nano-claw)
+
+---
+
+## 🛠️ Build & Configuration
+
+### Enable Nano-Claw Features
+
+In your `sdkconfig`, enable the new capabilities:
+
+```bash
+CONFIG_CLAW_ENABLE_PAIRING=y
+CONFIG_CLAW_ENABLE_SECRETS_VAULT=y
+CONFIG_CLAW_SECRETS_USE_HW_CRYPTO=y
+```
+
+### Memory Requirements
+
+| Component | Flash | RAM | Storage |
+|-----------|-------|-----|---------|
+| Pairing System | ~180KB | ~45KB | ~2KB per pairing |
+| Secrets Vault | ~145KB | ~28KB | ~600B per secret |
+| **Total Overhead** | **~325KB** | **~73KB** | **Variable** |
+
+✅ **ESP32-S3 N8R16 (8MB Flash, 16MB PSRAM) is fully capable!**
+
+---
+
+## 🧪 Quick Test
+
+```c
+#include "cap_pairing.h"
+#include "cap_secrets.h"
+
+void app_main(void) {
+    // Initialize filesystem
+    esp_vfs_spiffs_register(...);
+    
+    // Initialize pairing system
+    cap_pairing_init("/spiffs/pairing");
+    cap_pairing_register_group();
+    
+    // Initialize secrets vault
+    cap_secrets_init("/spiffs/vault", NULL, 0);
+    cap_secrets_set("openai_key", "sk-...", CAP_SECRETS_TYPE_API_KEY);
+    
+    // Your existing ESP-Claw setup...
+}
+```
+
+Full examples in [NANO_CLAW_FEATURES.md](./NANO_CLAW_FEATURES.md#-usage-examples)
+
+---

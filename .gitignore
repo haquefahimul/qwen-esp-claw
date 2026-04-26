@@ -1,16 +1,28 @@
 ```
-# Dependencies
-node_modules/
-pnpm-lock.yaml
-
-# Build artifacts
+# ESP-IDF build artifacts
 build/
-dist/
-target/
+cmake-build-*/
+sdkconfig
+sdkconfig.old
+*.map
+*.bin
+*.elf
+*.axf
+*.uf2
+
+# CMake artifacts
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
 
 # IDE files
 .vscode/
 .idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
 
 # Logs
 *.log
@@ -19,22 +31,22 @@ target/
 *.tmp
 *.swp
 
-# Environment files
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# Documentation build
+.nano-claw/docs/dist/
+.nano-claw/docs/.astro/
+.nano-claw/docs/node_modules/
+
+# Sensitive files
 .env
 .env.local
 *.env.*
 
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# Python specific
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Compressed files
+# Compressed archives
 *.zip
 *.gz
 *.tar
@@ -63,36 +75,20 @@ coverage/
 htmlcov/
 .coverage
 
-# MyPy cache
-.mypy_cache/
-
-# PyTest cache
-.pytest_cache/
+# Python cache
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
 
 # Gradle
 .gradle/
+build/
 
-# C/C++ build files
-*.o
-*.obj
-*.a
-*.lib
-*.so
-*.dylib
-*.dll
-*.exe
-*.out
+# MyPy
+.mypy_cache/
 
-# Java build files
-*.class
-*.jar
-*.war
-*.ear
-
-# Go build files
-*.exe
-*.dll
-*.so
-*.a
+# Pytest
+.pytest_cache/
 
 ```

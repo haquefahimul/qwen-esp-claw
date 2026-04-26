@@ -1,1 +1,88 @@
-Nothing to output - the file changes consist only of markdown documentation files (.md) which are source/config files and should not be ignored.
+```
+# Build artifacts
+build/
+dist/
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.exe
+*.dll
+
+# Dependencies
+node_modules/
+venv/
+.venv/
+julia-*/
+zig*/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Logs
+*.log
+
+# Coverage reports
+coverage/
+htmlcov/
+
+# Environment variables
+.env
+.env.local
+*.env.*
+
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# C/C++ specific
+*.out
+
+# Gradle
+.gradle/
+target/
+
+# MyPy
+.mypy_cache/
+
+# Pytest
+.pytest_cache/
+
+```

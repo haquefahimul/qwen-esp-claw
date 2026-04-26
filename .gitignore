@@ -7,17 +7,25 @@ dist/
 *.a
 *.so
 *.dylib
-*.exe
 *.dll
+*.exe
+*.out
 
 # Dependencies
 node_modules/
 venv/
 .venv/
-julia-*/
-zig*/
+__pycache__/
+*.egg-info/
+.Python
 
-# IDE and editor files
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# IDE
 .vscode/
 .idea/
 *.swp
@@ -27,62 +35,17 @@ zig*/
 # Logs
 *.log
 
-# Coverage reports
-coverage/
-htmlcov/
-
-# Environment variables
+# Environment
 .env
 .env.local
 *.env.*
 
-# Compressed files
-*.zip
-*.gz
-*.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
-*.zst
-*.lz4
-*.lzh
-*.cab
-*.arj
-*.rpm
-*.deb
-*.Z
-*.lz
-*.lzo
-*.tar.gz
-*.tar.bz2
-*.tar.xz
-*.tar.zst
+# Coverage
+coverage/
+htmlcov/
+.coverage
 
-# System files
+# OS
 .DS_Store
 Thumbs.db
-
-# Python specific
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-*.so
-
-# C/C++ specific
-*.out
-
-# Gradle
-.gradle/
-target/
-
-# MyPy
-.mypy_cache/
-
-# Pytest
-.pytest_cache/
-
 ```

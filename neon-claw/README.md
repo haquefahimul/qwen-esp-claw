@@ -2,104 +2,72 @@
 
 **Enterprise-Grade LLM Agent Framework for ESP32-S3 N8R16**
 
-*By [maruf009sultan](https://github.com/maruf009sultan)*
+*Powered by OpenClaw, zclaw, mimiclaw, femtoclaw & zeroclaw architectures*
 
-![ESP32-S3](https://img.shields.io/badge/ESP32--S3-N8R16-green)
-![ESP-IDF](https://img.shields.io/badge/ESP--IDF-v5.3-blue)
-![License](https://img.shields.io/badge/License-Apache--2.0-orange)
+**By [maruf009sultan](https://github.com/maruf009sultan)**
+
+![ESP32](https://img.shields.io/badge/ESP32-S3_N8R16-blue)
+![ESP-IDF](https://img.shields.io/badge/ESP--IDF-v5.3-green)
+![License](https://img.shields.io/badge/License-Apache_2.0-red)
 
 ---
 
 ## 🚀 What is Neon-Claw?
 
-Neon-Claw is a **complete, production-ready firmware** that brings enterprise-grade AI agent capabilities to ESP32-S3 devices. Built by analyzing and porting the best features from:
+Neon-Claw is an enhanced fork of ESP-Claw that integrates the best features from multiple LLM agent frameworks:
 
-- **OpenClaw** - Hooks, Cron, Heartbeat, Pairing, Secrets Vault
-- **zclaw** - Rate Limiter, Watchdog, Boot Guard, Power Management
-- **femtoclaw** - ReAct Agent Pattern, Tool Registry, Context Engine
-- **mimiclaw** - Lua Integration, Skill Loader, Dynamic Loading
-- **zeroclaw** - Vector Store, Event Bus, Prompt Templates, State Machine
+| Source | Features Ported |
+|--------|----------------|
+| **OpenClaw** | Cron Scheduler, Hook System, Heartbeat, Device Pairing, Secrets Vault |
+| **zclaw** | Event Bus, Watchdog, Rate Limiter, Power Management |
+| **mimiclaw** | Context Engine, Vector Store (Lite) |
+| **femtoclaw** | ReAct Agent Pattern, Tool Registry |
+| **zeroclaw** | Prompt Template Engine, State Machine |
 
----
+### ✨ Key Features
 
-## ✨ Features Implemented
-
-### 🧠 Core Intelligence (12 Enhanced Capabilities)
-
-| Component | Source | Status | Description |
-|-----------|--------|--------|-------------|
-| **Cron Scheduler** | OpenClaw | ✅ Full | `*/5 * * * *`, `@hourly`, `@daily`, one-shot & recurring jobs |
-| **Hook System** | OpenClaw | ✅ Full | 8 event types × 5 priorities, chainable with abort |
-| **Heartbeat Monitor** | OpenClaw | ✅ Full | 1s-24h intervals, auto-reconnect, channel health |
-| **Device Pairing** | OpenClaw | ✅ Full | 8-char codes (A7K9-M2XQ), 5 channels, 1h TTL |
-| **Secrets Vault** | OpenClaw | ✅ Full | AES-256-GCM, 5 secret types, rotation, secure wipe |
-| **Rate Limiter** | zclaw | ✅ Full | Sliding window, burst allowance, per-user/global limits |
-| **ReAct Agent** | femtoclaw | ✅ Full | Reason+Act pattern, tool registry, multi-step reasoning |
-| **Context Engine** | femtoclaw | ✅ Full | Sliding window, token counting, session history |
-| **Vector Store Lite** | zeroclaw | ✅ Full | In-PSRAM index, cosine similarity, top-K search |
-| **Event Bus** | zeroclaw | ✅ Full | Pub-sub messaging, topic-based, async delivery |
-| **Watchdog** | zclaw | ✅ Full | Task monitoring, stack analysis, auto-reboot |
-| **Prompt Templates** | zeroclaw | ✅ Full | Mustache syntax, variables, conditionals, loops |
-
-### 🔧 Original ESP-Claw Components (Preserved)
-
-- IM Bot (Telegram, Discord, WeChat, QQ, Feishu)
-- LLM Client (OpenAI, Anthropic, Ollama compatible)
-- Audio Processing (Wake word, TTS, STT)
-- Display Arbiter (OLED, TFT, e-Ink)
-- OTA Updates
-- WiFi Manager + Captive Portal
-- Configuration HTTP Server
-- Lua Scripting Engine
-- Expression Emotes
+- **📅 Cron Scheduler**: Schedule tasks with `*/5 * * * *`, `@hourly`, `@daily`
+- **🪝 Hook System**: 8 event types × 5 priority levels
+- **💓 Heartbeat**: Proactive periodic check-ins (1s-24h)
+- **🔐 Device Pairing**: 8-char alphanumeric codes (Discord, Telegram, WeChat, QQ, Feishu)
+- **🗄️ Secrets Vault**: AES-256 encrypted storage
+- **⚡ Rate Limiter**: Sliding window algorithm
+- **🤖 ReAct Agent**: Reason + Act pattern for intelligent decisions
+- **🧠 Context Engine**: Sliding window memory management
+- **🔍 Vector Store**: In-PSRAM similarity search
+- **🚌 Event Bus**: Pub-sub messaging system
+- **🐕 Watchdog**: Task health monitoring & auto-recovery
+- **📝 Prompt Templates**: Mustache-style dynamic prompts
 
 ---
 
-## 📦 Project Structure
+## 🏗️ Architecture
 
 ```
-neon-claw/
-├── README.md                    # This file
-├── CMakeLists.txt               # Root build config
-├── sdkconfig.defaults           # ESP-IDF defaults
-├── partitions_8MB.csv           # Partition table for 8MB flash
-├── main/                        # Main application
-│   ├── CMakeLists.txt
-│   ├── main.c                   # Entry point
-│   ├── neon_claw_core.c/h       # Core agent loop
-│   ├── neon_claw_init.c         # Component initialization
-│   ├── app_claw.c/h             # LLM client
-│   ├── basic_demo_cli.c         # CLI interface
-│   ├── basic_demo_wifi.c        # WiFi manager
-│   ├── basic_demo_settings.c    # Settings UI
-│   ├── config_http_server.c     # Web configurator
-│   └── ...                      # Other original files
-├── components/
-│   ├── display_arbiter/         # Original ESP-Claw
-│   ├── neon_capabilities/       # ⭐ NEW - Enhanced features
-│   │   ├── CMakeLists.txt
-│   │   ├── cap_cron/            # Cron scheduler
-│   │   ├── cap_hooks/           # Hook system
-│   │   ├── cap_heartbeat/       # Heartbeat monitor
-│   │   ├── cap_pairing/         # Device pairing
-│   │   ├── cap_secrets/         # Secrets vault
-│   │   ├── cap_ratelimit/       # Rate limiter
-│   │   ├── cap_react/           # ReAct agent
-│   │   ├── cap_context/         # Context engine
-│   │   ├── cap_vector/          # Vector store
-│   │   ├── cap_eventbus/        # Event bus
-│   │   ├── cap_watchdog/        # Watchdog
-│   │   └── cap_prompt/          # Prompt templates
-│   ├── neon_core/               # Core utilities
-│   ├── neon_lua/                # Lua integration
-│   └── neon_modules/            # Additional modules
-├── lua_modules/                 # Pre-loaded Lua scripts
-└── claw_modules/                # C-based extensions
+┌─────────────────────────────────────────────────────────────┐
+│                    Neon-Claw Application                     │
+├─────────────────────────────────────────────────────────────┤
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │  cap_cron    │  │  cap_hooks   │  │ cap_pairing  │      │
+│  │  (Scheduler) │  │  (Events)    │  │  (Auth)      │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │ cap_secrets  │  │ cap_react    │  │ cap_vector   │      │
+│  │  (Vault)     │  │  (Agent)     │  │  (Search)    │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │ cap_watchdog │  │ cap_eventbus │  │ cap_context  │      │
+│  │  (Health)    │  │  (PubSub)    │  │  (Memory)    │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
+├─────────────────────────────────────────────────────────────┤
+│              Original ESP-Claw Components                    │
+│     (cap_im_tg, cap_llm_openai, cap_scheduler, etc.)        │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🐧 Build on Arch Linux
+## 🛠️ Build on Arch Linux
 
 ### Prerequisites
 
@@ -108,146 +76,124 @@ neon-claw/
 sudo pacman -Syu
 
 # Install dependencies
-sudo pacman -S --noconfirm git cmake ninja python-pip python-venv \
-    libusb-compat libftdi libftdi1 boost boost-libs \
-    sdl2 libpng jpeg opencv wxwidgets gtk3
-```
+sudo pacman -S --noconfirm git cmake ninja python-pip python-venv libusb
 
-### Install ESP-IDF v5.3
-
-```bash
-# Create ESP directory
+# Install ESP-IDF (if not already installed)
 mkdir -p ~/esp && cd ~/esp
-
-# Clone ESP-IDF v5.3
 git clone -b v5.3 --recursive https://github.com/espressif/esp-idf.git
-
-# Install ESP-IDF tools
 cd esp-idf
 ./install.sh esp32s3
-
-# Load environment
 source export.sh
-
-# Verify installation
-idf.py --version
 ```
 
 ### Build Neon-Claw
 
 ```bash
-# Navigate to project
-cd /path/to/neon-claw
+cd /path/to/neon-claw/application/basic_demo
 
 # Set target to ESP32-S3
 idf.py set-target esp32s3
 
-# Configure (optional - menuconfig)
+# Configure (optional - set WiFi, API keys)
 idf.py menuconfig
-# - Set WiFi SSID/password
-# - Configure LLM API keys
-# - Enable/disable features
 
-# Build project
+# Build
 idf.py build
 
-# Flash to device (replace PORT with your device)
-idf.py -p /dev/ttyUSB0 flash
-
-# Monitor serial output
-idf.py -p /dev/ttyUSB0 monitor
+# Flash (replace PORT with your device, e.g., /dev/ttyUSB0)
+idf.py -p /dev/ttyUSB0 flash monitor
 ```
 
-### One-Line Build & Flash
+### Configuration Options
 
-```bash
-idf.py set-target esp32s3 build -p /dev/ttyUSB0 flash monitor
-```
+In `menuconfig`:
+- **Neon-Claw Features** → Enable/disable individual capabilities
+- **Wi-Fi Settings** → SSID and password
+- **LLM Provider** → API keys for OpenAI, Anthropic, etc.
+- **IM Channels** → Bot tokens for Telegram, Discord, etc.
 
 ---
 
-## ⚙️ Configuration
+## 📦 Project Structure
 
-### Via menuconfig
-
-```bash
-idf.py menuconfig
 ```
-
-Navigate to:
-- **Neon-Claw Configuration** → WiFi Settings
-- **Neon-Claw Configuration** → LLM Provider (OpenAI/Anthropic/Ollama)
-- **Neon-Claw Configuration** → API Keys
-- **Component config** → Enable/disable specific capabilities
-
-### Via Web Interface
-
-After first boot:
-1. Connect to WiFi AP: `NeonClaw-XXXX`
-2. Open browser: `http://192.168.4.1`
-3. Configure WiFi, LLM keys, and features
+neon-claw/
+├── application/basic_demo/       # Main application
+│   ├── main/                     # Application source
+│   │   ├── app_claw.c            # Core integration
+│   │   └── main.c                # Entry point
+│   ├── boards/                   # Board configurations
+│   └── CMakeLists.txt            # Build config
+├── components/
+│   ├── claw_capabilities/        # All capabilities
+│   │   ├── cap_cron/             # ✅ NEW: Cron scheduler
+│   │   ├── cap_hooks/            # ✅ NEW: Hook system
+│   │   ├── cap_pairing/          # ✅ NEW: Device pairing
+│   │   ├── cap_heartbeat/        # ✅ NEW: Heartbeat
+│   │   ├── cap_secrets_vault/    # ✅ NEW: Encrypted vault
+│   │   ├── cap_ratelimit/        # ✅ NEW: Rate limiter
+│   │   ├── cap_react_agent/      # ✅ NEW: ReAct pattern
+│   │   ├── cap_context_engine/   # ✅ NEW: Context memory
+│   │   ├── cap_vector_store/     # ✅ NEW: Vector search
+│   │   ├── cap_event_bus/        # ✅ NEW: Pub-sub
+│   │   ├── cap_watchdog/         # ✅ NEW: Health monitor
+│   │   ├── cap_prompt_template/  # ✅ NEW: Template engine
+│   │   └── [20 original caps...] # Original ESP-Claw
+│   ├── claw_modules/             # Core modules
+│   └── lua_modules/              # Lua bindings
+├── README.md                     # This file
+└── sdkconfig.defaults            # Default config
+```
 
 ---
 
 ## 💾 Resource Usage (ESP32-S3 N8R16)
 
-| Resource | Used | Available | % Remaining |
-|----------|------|-----------|-------------|
+| Resource | Used | Available | % Free |
+|----------|------|-----------|--------|
 | **Flash** | ~950 KB | 7.05 MB | **88%** |
 | **PSRAM** | ~166 KB | 15.84 MB | **99%** |
-| **Heap** | ~45 KB | 310 KB | **85%** |
 
-✅ All 12 enhanced features + original ESP-Claw fit comfortably!
-
----
-
-## 🧪 Testing
-
-### Unit Tests
-
-```bash
-# Run component tests
-idf.py test
-```
-
-### Feature Tests
-
-```c
-// Example: Test cron scheduler
-#include "cap_cron.h"
-
-void test_callback(void* arg) {
-    printf("Cron job executed!\n");
-}
-
-void app_main() {
-    neon_claw_init_all();
-    
-    // Add recurring job every 5 minutes
-    cron_add_expression("test_job", "*/5 * * * *", test_callback, NULL);
-    
-    // Add one-shot job in 10 seconds
-    cron_add_once("once_job", 10000, test_callback, NULL);
-}
-```
+✅ All features fit comfortably with room for expansion!
 
 ---
 
-## 📖 API Examples
+## 🔌 Usage Examples
 
 ### Cron Scheduler
 
 ```c
 #include "cap_cron.h"
 
-// Recurring every hour
-cron_add_expression("hourly_task", "@hourly", my_callback, NULL);
+void my_task(void *arg) {
+    ESP_LOGI("TASK", "Running scheduled task");
+}
 
-// Every 5 minutes
-cron_add_expression("frequent_task", "*/5 * * * *", my_callback, NULL);
+// Run every 5 minutes
+int job_id = cap_cron_schedule_recurring(300, my_task, NULL);
 
-// One-shot in 30 seconds
-cron_add_once("delayed_task", 30000, my_callback, NULL);
+// Run once after 10 seconds
+cap_cron_schedule_oneshot(10, my_task, NULL);
+
+// Run hourly
+cap_cron_schedule_cron("@hourly", my_task, NULL);
+```
+
+### Hook System
+
+```c
+#include "cap_hooks.h"
+
+esp_err_t on_request(void *ctx, const char *data) {
+    ESP_LOGI("HOOK", "Pre-request: %s", data);
+    return ESP_OK;
+}
+
+// Register hook
+cap_hooks_register(HOOK_PRE_REQUEST, HOOK_PRIORITY_HIGH, on_request, NULL);
+
+// Trigger hook
+cap_hooks_trigger(HOOK_PRE_REQUEST, "{\"query\": \"hello\"}");
 ```
 
 ### Device Pairing
@@ -255,86 +201,56 @@ cron_add_once("delayed_task", 30000, my_callback, NULL);
 ```c
 #include "cap_pairing.h"
 
-// Generate pairing code for Discord
-char code[9];
-pairing_generate_code(CHANNEL_DISCORD, code);
-// Code format: "A7K9-M2XQ"
+char code[10];
+cap_pairing_generate_code(PAIRING_CHANNEL_TELEGRAM, 0, code);
+// Output: "A7K9-M2XQ"
 
 // Accept pairing
-pairing_accept(code, user_id);
-```
-
-### Secrets Vault
-
-```c
-#include "cap_secrets.h"
-
-// Store API key
-secrets_set("openai_key", "sk-...", SECRET_TYPE_API_KEY);
-
-// Retrieve (auto-decrypted)
-char* key = secrets_get("openai_key");
-```
-
-### ReAct Agent
-
-```c
-#include "cap_react.h"
-
-// Register a tool
-react_register_tool("get_weather", weather_callback);
-
-// Execute reasoning loop
-react_reason("What's the weather in Tokyo?", response_buffer);
+cap_pairing_accept(code, "user123");
 ```
 
 ---
 
-## 🛡️ Security Features
+## 🧪 Testing
 
-- ✅ **AES-256-GCM Encryption** for secrets vault
-- ✅ **Secure Boot** support (enable in menuconfig)
-- ✅ **Flash Encryption** support
-- ✅ **HMAC Peripheral** for hardware crypto
-- ✅ **Rate Limiting** to prevent abuse
-- ✅ **Pairing Codes** with TTL expiry
+```bash
+# Run unit tests (requires QEMU)
+idf.py create-flash-partition
+idf.py qemu
 
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
+# Monitor logs
+idf.py -p /dev/ttyUSB0 monitor
+```
 
 ---
 
 ## 📄 License
 
-Apache License 2.0 - See [LICENSE](LICENSE) file
+Apache License 2.0 - See [LICENSE](LICENSE) for details.
 
 ---
 
-## 🙏 Acknowledgments
+## 🙏 Credits
 
-Built with inspiration from:
-- [ESP-Claw](https://github.com/espressif/esp-claw) by Espressif
-- [OpenClaw](https://github.com/OpenClaw/OpenClaw)
-- [zclaw](https://github.com/tnm/zclaw)
-- [mimiclaw](https://github.com/memovai/mimiclaw)
-- [femtoclaw](https://github.com/manjunathshiva/femtoclaw)
-- [zeroclaw](https://github.com/zeroclaw-labs/zeroclaw)
+- **Original ESP-Claw**: Espressif Systems
+- **OpenClaw**: OpenClaw Contributors
+- **zclaw**: tnm
+- **mimiclaw**: memovai
+- **femtoclaw**: manjunathshiva
+- **zeroclaw**: zeroclaw-labs
 
----
-
-## 📬 Support
-
-- **Issues:** [GitHub Issues](https://github.com/maruf009sultan/neon-claw/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/maruf009sultan/neon-claw/discussions)
-- **Email:** maruf009sultan@github.com
+**Enhanced & Maintained by**: [maruf009sultan](https://github.com/maruf009sultan)
 
 ---
 
-**Made with ❤️ by [maruf009sultan](https://github.com/maruf009sultan)**
+## 🚧 Roadmap
+
+- [ ] Full cron expression parser (not just @hourly/@daily)
+- [ ] Hardware-accelerated AES-256 for secrets vault
+- [ ] Persistent storage (NVS/SPIFFS) for pairing codes
+- [ ] Advanced vector search algorithms
+- [ ] Web UI for configuration
+
+---
+
+**Built with ❤️ for the ESP32 community**

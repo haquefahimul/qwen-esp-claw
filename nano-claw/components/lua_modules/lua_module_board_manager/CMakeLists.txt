@@ -1,9 +1,0 @@
-idf_component_register(
-    SRC_DIRS
-        "."
-    INCLUDE_DIRS
-        "include"
-    REQUIRES
-        cap_lua
-        espressif__esp_board_manager
-)
